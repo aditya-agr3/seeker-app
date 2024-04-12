@@ -3,7 +3,8 @@
 ## Notes
 
 -   Do not directly commit in `main` branch
--   Create a new branch for each feature
+-   Create a new branch for each feature & create PR for the same, will review
+    it and merge
 -   Do not commit `node_modules` folder
 -   Do not commit `.env` file
 
