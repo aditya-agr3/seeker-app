@@ -47,7 +47,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Running unit tes![seeker app ss](https://github.com/aditya-agr3/seeker-app/assets/103147141/77505e51-5525-4870-906b-ff90bd080564)
+ts
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
@@ -59,3 +60,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+
+
+![seeker app ss](https://github.com/aditya-agr3/seeker-app/assets/103147141/d1cc58d2-93fc-4b78-abea-e885294ec773)
