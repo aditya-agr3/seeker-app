@@ -47,7 +47,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tes![seeker app ss](https://github.com/aditya-agr3/seeker-app/assets/103147141/77505e51-5525-4870-906b-ff90bd080564)
+## Running unites
 ts
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
