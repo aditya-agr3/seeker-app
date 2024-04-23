@@ -11,12 +11,12 @@
 ## Technologies
 
 \* May change as per requirement/team discussion
+- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
 
 **Frontend :**
 
 -   Angular (17.x.x)
--   Bootstrap (5.x.x)
--   Tailwind
+-   Tailwindcss (3.x.x)
 
 **Backend :**
 
@@ -24,16 +24,9 @@
 
 ## Important Links
 
--   [Project
-    Flow](https://drive.google.com/file/d/1up5-EMfls0ycHXtUN_W0BiGxoVT_DpBd/view)
+-   [Project Flow](https://drive.google.com/file/d/1up5-EMfls0ycHXtUN_W0BiGxoVT_DpBd/view)
 
--   [Team
-    Details](https://docs.google.com/spreadsheets/d/1Y6oUUeeC6dFKH2PCi76-8we-vuI48t5sNSTKXK6A5Pg/edit#gid=0)
-
-
-    # App
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+-   [Team Details](https://docs.google.com/spreadsheets/d/1Y6oUUeeC6dFKH2PCi76-8we-vuI48t5sNSTKXK6A5Pg/edit#gid=0)
 
 ## Development server
 
