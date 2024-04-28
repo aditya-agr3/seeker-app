@@ -3,74 +3,75 @@ app-navbar {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensure it's above other content */
+    z-index: 1000;
 }
 
-.c1{
-    height: 500px; 
-    width: 100%;
-    background: #fff;
-    transition: all 0.3s ease; /* smooth transition for hover effects */
-    margin-bottom: 10px;
-    flex-direction: column;
-    position: relative; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card_org .p-6 {
-    padding: 1.5rem;
-}
-
-.card_org h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem; 
-}
-
-.card_org p {
-    font-size: 1rem;
-    line-height: 1.5; 
-    margin-bottom: 1rem; 
-}
-
-.card_org a {
-    color: #3182ce;
-    text-decoration: none; 
-}
-
-.card {
-    height: 500px; 
+.c1, .card {
+    height: 500px;
     width: 100%;
     background: #fff;
     transition: all 0.3s ease;
     margin-bottom: 10px;
     flex-direction: column;
-    position: relative; 
+    position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.c1 .p-6, .card .p-6 {
+    padding: 1.5rem;
+}
+
+.c1 h1, .card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.c1 p, .card p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.c1 a, .card a {
+    color: #3182ce;
+    text-decoration: none;
+}
+
 .shimmer-effect {
-    height: 300px; 
+    height: 300px;
     width: 100%;
     background: linear-gradient(-25deg, #eee 40%, #fafafa 50%, #eee 60%);
     background-size: 100% 200%;
     background-position-y: 100%;
     animation: verticalShimmer 1.5s infinite linear;
-    position: absolute; 
-    bottom: 0; 
+    position: absolute;
+    bottom: 0;
 }
-.card:hover {
-    transform: scale(1.05); 
-    transition: transform 0.3s ease-in-out;
-    opacity: 0.9;
-}
-.c1:hover {
-    transform: scale(1.05); 
-    transition: transform 0.3s ease-in-out;
+
+/* Hover Effect */
+.c1:hover, .card:hover {
+    transform: scale(1.05);
     opacity: 0.9;
 }
 
 @keyframes verticalShimmer {
     to {
         background-position-y: 0%;
+    }
+}
+
+/* For Responsiveness */
+@media (max-width: 768px) {
+    .c1, .card {
+        height: auto;
+    }
+    .c1 .p-6, .card .p-6 {
+        padding: 1rem;
+    }
+    .c1 h1, .card h1 {
+        font-size: 1.2rem;
+    }
+    .c1 p, .card p {
+        font-size: 0.9rem;
     }
 }
