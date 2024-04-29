@@ -1,77 +1,21 @@
-app-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.c1, .card {
-    height: 500px;
-    width: 100%;
-    background: #fff;
-    transition: all 0.3s ease;
-    margin-bottom: 10px;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.c1 .p-6, .card .p-6 {
-    padding: 1.5rem;
-}
-
-.c1 h1, .card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.c1 p, .card p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-}
-
-.c1 a, .card a {
-    color: #3182ce;
-    text-decoration: none;
-}
-
 .shimmer-effect {
-    height: 300px;
+    position: absolute;
+    bottom: 0;
+
+    height: 55%;
     width: 100%;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
     background: linear-gradient(-25deg, #eee 40%, #fafafa 50%, #eee 60%);
     background-size: 100% 200%;
     background-position-y: 100%;
-    animation: verticalShimmer 1.5s infinite linear;
-    position: absolute;
-    bottom: 0;
-}
 
-/* Hover Effect */
-.c1:hover, .card:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+    animation: verticalShimmer 1.5s infinite linear;
 }
 
 @keyframes verticalShimmer {
     to {
         background-position-y: 0%;
-    }
-}
-
-/* For Responsiveness */
-@media (max-width: 768px) {
-    .c1, .card {
-        height: auto;
-    }
-    .c1 .p-6, .card .p-6 {
-        padding: 1rem;
-    }
-    .c1 h1, .card h1 {
-        font-size: 1.2rem;
-    }
-    .c1 p, .card p {
-        font-size: 0.9rem;
     }
 }
