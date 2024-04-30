@@ -47,14 +47,14 @@
                 >
                     <img
                         class="object-cover object-center w-full lg:h-48 md:h-36"
-                        src="{{ post.images[0].url }}"
+                        src="{{ post?.images?.[0]?.url  || '/assets/card-default.jpg'}}"
                         alt="blog"
                     />
                     <div class="p-6 border-t">
                         <h1
                             class="mb-3 text-lg font-bold text-gray-900 title-font"
                         >
-                            {{ post.name }}
+                            {{ post.title }}
                         </h1>
                         <p class="mb-3 leading-relaxed">
                             {{ post.description | clipText }}
