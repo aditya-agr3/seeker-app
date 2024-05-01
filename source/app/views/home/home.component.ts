@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+
 import { ClipTextPipe } from '../../shared/pipes/clip-text.pipe';
 
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -10,17 +13,26 @@ import { SearchService } from '../../core/services/search.service';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [NavbarComponent, FooterComponent, CommonModule, ClipTextPipe],
+    imports: [
+        NavbarComponent,
+        FooterComponent,
+        CommonModule,
+        ClipTextPipe,
+        FormsModule,
+        MatIconModule,
+    ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
 })
 export class HomeComponent {
     posts: any = [];
+    searchQuery: string = '';
+    isLoading: boolean = false;
+    isSearched: boolean = false;
 
     constructor(private searchService: SearchService) {}
 
     ngOnInit() {
-        // this.fetchPost();
         this.fetchPostCache();
     }
 
@@ -40,9 +52,43 @@ export class HomeComponent {
     }
 
     fetchPostCache() {
+        this.isLoading = true;
         this.searchService.getInformationCache().subscribe((data) => {
+            console.log('API Response : ', data?.data?.vistaar_cache_db);
             this.posts = data?.data?.vistaar_cache_db;
-            console.log('Cache : ', this.posts);
+            this.isLoading = false;
         });
+    }
+
+    handlerSearch() {
+        this.isSearched = true;
+        if (this.searchQuery) {
+            this.isLoading = true;
+            this.searchService
+                .getInformationCache(this.searchQuery)
+                .subscribe((data) => {
+                    console.log(
+                        'API Response : ',
+                        data?.data?.vistaar_cache_db
+                    );
+                    this.posts = data?.data?.vistaar_cache_db;
+                    this.isLoading = false;
+                });
+            const searchResultElement =
+                document.getElementById('search-result');
+            if (searchResultElement) {
+                searchResultElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'nearest',
+                });
+            }
+        }
+    }
+
+    handlerClear() {
+        this.isSearched = false;
+        this.searchQuery = '';
+        this.fetchPostCache();
     }
 }
