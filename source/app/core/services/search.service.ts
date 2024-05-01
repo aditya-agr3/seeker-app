@@ -35,7 +35,7 @@ export class SearchService {
         });
     }
 
-    getInformationCache(): Observable<any> {
-        return this.http.post(this.apiUrlCache, {});
+    getInformationCache(searchQuery?: string): Observable<any> {
+        return this.http.post(this.apiUrlCache, { title: searchQuery });
     }
 }

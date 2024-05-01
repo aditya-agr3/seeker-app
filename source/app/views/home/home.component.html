@@ -2,7 +2,7 @@
     <app-navbar [hero]="true"></app-navbar>
 
     <!-- Hero Section -->
-    <section class="bg-hero h-[100vh] bg-no-repeat bg-[length:100%] bg-center">
+    <section class="bg-hero h-[100vh] bg-no-repeat bg-cover bg-center">
         <!-- Hero Content -->
         <div
             class="flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.4)]"
@@ -20,23 +20,47 @@
                 <div class="flex justify-center gap-2 mt-8">
                     <input
                         type="text"
-                        class="p-2 bg-transparent border border-white rounded outline-none w-[300px]"
+                        class="p-2 bg-transparent border border-white rounded outline-none w-[400px]"
                         placeholder="Search for information..."
+                        [(ngModel)]="searchQuery"
                     />
                     <button
-                        class="px-5 py-2 text-gray-600 bg-white rounded hover:bg-gray-200"
+                        class="flex items-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        (click)="handlerSearch()"
                     >
-                        Search
+                        Search <mat-icon>search</mat-icon>
+                    </button>
+                    <button
+                        class="flex items-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        (click)="handlerClear()"
+                        *ngIf="searchQuery"
+                    >
+                        Clear <mat-icon>close</mat-icon>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="text-gray-600 body-font">
+    <!-- search resualt for ... -->
+    <section *ngIf="isSearched && searchQuery" class="mt-24 mb-[-48px]">
+        <div class="container flex justify-between mx-auto" id="search-result">
+            <p>
+                Search results for "<span class="italic font-semibold">{{
+                    searchQuery
+                }}</span
+                >" ( <span class="font-semibold">{{ posts.length }}</span>
+                Results )
+            </p>
+        </div>
+    </section>
+
+    <section
+        *ngIf="!isLoading && posts.length > 0"
+        class="my-24 text-gray-600 body-font"
+    >
         <div
-            class="container p-4 grid grid-cols-1 gap-x-[2vw] gap-y-10 py-24 mx-auto justify-items-center md:grid-cols-2 xl:grid-cols-3"
-            *ngIf="posts.length"
+            class="container p-4 grid grid-cols-1 gap-x-[2vw] gap-y-10 mx-auto justify-items-center md:grid-cols-2 xl:grid-cols-3"
         >
             <div
                 *ngFor="let post of posts"
@@ -88,10 +112,9 @@
     </section>
 
     <!-- Loading Content Shimmer -->
-    <section>
+    <section *ngIf="isLoading" class="my-24">
         <div
-            *ngIf="!posts.length"
-            class="container p-4 grid grid-cols-1 gap-x-[2vw] gap-y-10 py-24 mx-auto justify-items-center md:grid-cols-2 xl:grid-cols-3"
+            class="container p-4 grid grid-cols-1 gap-x-[2vw] gap-y-10 mx-auto justify-items-center md:grid-cols-2 xl:grid-cols-3"
         >
             <div
                 *ngFor="let _ of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
@@ -102,5 +125,12 @@
         </div>
     </section>
 
+    <!-- No records to display -->
+    <section *ngIf="!isLoading && posts.length === 0" class="my-24">
+        <div class="container mx-auto text-center">
+            <img src="/assets/no-data.jpg" class="mx-auto w-[500px]" alt="" />
+            <h1 class="text-2xl font-semibold">No records to display</h1>
+        </div>
+    </section>
     <app-footer></app-footer>
 </main>
