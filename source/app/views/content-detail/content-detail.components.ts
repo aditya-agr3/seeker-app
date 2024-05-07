@@ -6,7 +6,7 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
     selector: 'app-about-us',
     standalone: true,
     imports: [NavbarComponent, FooterComponent],
-    templateUrl: './about-us.component.html',
-    styleUrl: './about-us.component.css',
+    templateUrl: './content-detail.component.html',
+    styleUrl: './content-detail.component.css',
 })
-export class AboutUsComponent {}
+export class ContentDetailComponent {}

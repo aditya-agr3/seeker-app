@@ -1,0 +1,21 @@
+.shimmer-effect {
+    position: absolute;
+    bottom: 0;
+
+    height: 55%;
+    width: 100%;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    background: linear-gradient(-25deg, #eee 40%, #fafafa 50%, #eee 60%);
+    background-size: 100% 200%;
+    background-position-y: 100%;
+
+    animation: verticalShimmer 1.5s infinite linear;
+}
+
+@keyframes verticalShimmer {
+    to {
+        background-position-y: 0%;
+    }
+}

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
     private apiUrl = 'https://vistaar-api.tekdinext.com/search';
+    private apiUrlCache = 'https://vistaar-api.tekdinext.com/cache/search';
 
     constructor(private http: HttpClient) {}
 
@@ -32,5 +33,9 @@ export class SearchService {
                 },
             },
         });
+    }
+
+    getInformationCache(searchQuery?: string): Observable<any> {
+        return this.http.post(this.apiUrlCache, { title: searchQuery });
     }
 }
