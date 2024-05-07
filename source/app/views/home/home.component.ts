@@ -4,11 +4,11 @@ import { NavbarComponent } from '../../shared/components/navbar/navbar.component
 import { SearchService } from '../../core/services/search.service';
 import { CommonModule } from '@angular/common';
 import { ClipTextPipe } from '../../shared/pipes/clip-text.pipe';
-
+import { PaginationComponent } from '../../pagination/pagination.component';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [NavbarComponent, FooterComponent, CommonModule, ClipTextPipe],
+    imports: [NavbarComponent, FooterComponent, CommonModule, ClipTextPipe, PaginationComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
 })
