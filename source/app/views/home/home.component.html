@@ -17,7 +17,9 @@
                     Application connects you with a wealth of resources and
                     expertise, right at your fingertips.
                 </p>
-                <div class="flex justify-center gap-2 mt-8">
+                <div
+                    class="flex flex-col justify-center gap-2 px-10 mt-8 sm:flex-row"
+                >
                     <input
                         type="text"
                         class="p-2 bg-transparent border border-white rounded outline-none md:w-[400px]"
@@ -25,13 +27,13 @@
                         [(ngModel)]="searchQuery"
                     />
                     <button
-                        class="flex items-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
                         (click)="handlerSearch()"
                     >
                         Search <mat-icon>search</mat-icon>
                     </button>
                     <button
-                        class="flex items-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
                     >
@@ -43,7 +45,7 @@
     </section>
 
     <!-- search resualt for ... -->
-    <section *ngIf="isSearched && searchQuery" class="mt-24 mb-[-48px]">
+    <section *ngIf="isSearched && searchQuery" class="mt-24 mb-[-48px] px-5">
         <div class="container flex justify-between mx-auto" id="search-result">
             <p>
                 Search results for "<span class="italic font-semibold">{{
