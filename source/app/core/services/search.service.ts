@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environment/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SearchService {
-    private apiUrl = 'https://vistaar-api.tekdinext.com/search';
-    private apiUrlCache = 'https://vistaar-api.tekdinext.com/cache/search';
+    private apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient) {}
 
     getInformation(): Observable<any> {
-        return this.http.post(this.apiUrl, {
+        return this.http.post(`${this.apiUrl}/search`, {
             context: {
                 domain: 'vistaar:content',
                 action: 'search',
@@ -36,6 +36,8 @@ export class SearchService {
     }
 
     getInformationCache(searchQuery?: string): Observable<any> {
-        return this.http.post(this.apiUrlCache, { title: searchQuery });
+        return this.http.post(`${this.apiUrl}/cache/search`, {
+            title: searchQuery,
+        });
     }
 }

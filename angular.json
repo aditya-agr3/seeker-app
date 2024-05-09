@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "app-5": {
+    "seeker-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/app-5",
+            "outputPath": "dist/seeker-app",
             "index": "source/index.html",
             "browser": "source/main.ts",
             "polyfills": [
@@ -22,7 +22,10 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "source/favicon.ico",
-              "source/assets"
+              "source/assets",
+              "source/manifest.webmanifest",
+              "source/manifest.webmanifest",
+              "source/manifest.webmanifest"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -44,7 +47,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -58,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "app-5:build:production"
+              "buildTarget": "seeker-app:build:production"
             },
             "development": {
-              "buildTarget": "app-5:build:development"
+              "buildTarget": "seeker-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "app-5:build"
+            "buildTarget": "seeker-app:build"
           }
         },
         "test": {
@@ -82,7 +86,10 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "source/favicon.ico",
-              "source/assets"
+              "source/assets",
+              "source/manifest.webmanifest",
+              "source/manifest.webmanifest",
+              "source/manifest.webmanifest"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
