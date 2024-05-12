@@ -57,6 +57,7 @@
         </div>
     </section>
 
+    <!-- Cards -->
     <section
         *ngIf="!isLoading && posts.length > 0"
         class="my-24 text-gray-600 body-font"
@@ -68,8 +69,9 @@
                 *ngFor="let post of posts"
                 class="transition-all duration-200 cursor-pointer hover:scale-[1.02] w-full"
             >
-                <div
-                    class="h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60"
+                <a
+                    class="block h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60"
+                    [routerLink]="['/details', post.id]"
                 >
                     <img
                         class="object-cover object-center w-full lg:h-48 md:h-36"
@@ -108,7 +110,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>

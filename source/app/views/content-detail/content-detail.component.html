@@ -7,7 +7,7 @@
                 <img
                     alt="ecommerce"
                     class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto"
-                    src="/assets/field-land-1.jpg"
+                    src="/assets/card-default.jpg"
                 />
                 <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
                     <h2
@@ -18,7 +18,7 @@
                     <h1
                         class="mb-1 text-3xl font-medium text-gray-900 title-font"
                     >
-                        Mango farming
+                        {{ postDetails.title || "Mango farming" }}
                     </h1>
                     <div class="flex mb-4">
                         <span class="flex items-center">
@@ -137,16 +137,7 @@
                         </span>
                     </div>
                     <p class="leading-relaxed text-justify">
-                        Fam locavore kickstarter distillery. Mixtape chillwave
-                        tumeric sriracha taximy chia microdosing tilde DIY. XOXO
-                        fam indxgo juiceramps cornhole raw denim forage
-                        brooklyn. Everyday carry +1 seitan poutine tumeric.
-                        Gastropub blue bottle austin listicle pour-over, neutra
-                        jean shorts keytar banjo tattooed umami cardigan. Fam
-                        locavore kickstarter distillery. Mixtape chillwave
-                        tumeric sriracha taximy chia microdosing tilde DIY. XOXO
-                        fam indxgo juiceramps cornhole raw denim forage
-                        brooklyn.
+                        {{ postDetails?.description }}
                     </p>
                     <div
                         class="flex items-center pb-5 mt-6 mb-5 border-b-2 border-gray-100"
