@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ClipTextPipe } from '../../shared/pipes/clip-text.pipe';
@@ -20,6 +21,7 @@ import { SearchService } from '../../core/services/search.service';
         ClipTextPipe,
         FormsModule,
         MatIconModule,
+        RouterModule,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
