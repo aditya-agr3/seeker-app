@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://vistaar-api.tekdinext.com',
+    apiUrl: 'https://kahani-api.tekdinext.com',
 };
