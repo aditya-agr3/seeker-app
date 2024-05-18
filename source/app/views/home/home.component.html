@@ -38,7 +38,7 @@
                     All without spending a dime!
                 </p>
                 <div
-                    class="flex flex-col justify-start items-center gap-1 mt-8 border-[1px] border-white sm:flex-row px-[5px] rounded-full w-[350px]"
+                    class="flex justify-start items-center gap-1 mt-8 border-[1px] border-white flex-row px-[5px] rounded-full w-[350px]"
                 >
                     <input
                         type="text"
@@ -150,7 +150,9 @@
     <section *ngIf="!isLoading && posts.length === 0" class="my-24">
         <div class="container mx-auto text-center">
             <img src="/assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
-            <h1 class="text-2xl font-semibold">No Tutorials/Courses display</h1>
+            <h1 class="text-2xl font-semibold">
+                No tutorials/courses to display
+            </h1>
         </div>
     </section>
     <app-footer></app-footer>
