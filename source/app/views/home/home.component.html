@@ -1,43 +1,59 @@
-<main>
+<main class="overflow-clip">
     <app-navbar [hero]="true"></app-navbar>
 
     <!-- Hero Section -->
     <section class="bg-hero h-[100vh] bg-no-repeat bg-cover bg-center">
         <!-- Hero Content -->
         <div
-            class="flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.4)]"
+            class="flex items-center justify-center lg:justify-start w-full h-full bg-[rgba(0,0,0,0.2)]"
         >
-            <div class="text-center text-white">
-                <h1 class="text-3xl font-semibold">
-                    Empowering Farmers with Knowledge
+            <div
+                class="container flex flex-col items-center p-10 mx-auto text-white lg:items-start"
+            >
+                <h1
+                    class="text-5xl font-semibold leading-[60px] text-center lg:text-left"
+                >
+                    Unlock Your Potential with <br />
+                    <div
+                        class="inline-block bg-[rgba(0,0,0,0.1)] [transform:skew(15deg)] p-1"
+                    >
+                        <div
+                            class="inline-block [transform:skew(-15deg)] italic"
+                        >
+                            Open Access
+                        </div>
+                    </div>
+                    <br />
+                    Courses and Tutorials
                 </h1>
-                <p class="max-w-[700px] mt-8">
-                    Are you a farmer seeking timely and relevant information to
-                    enhance your agricultural practices? Look no further! Seeker
-                    Application connects you with a wealth of resources and
-                    expertise, right at your fingertips.
+                <p class="max-w-[700px] mt-8 hidden lg:block">
+                    At <span class="italic">Seeker Academy</span>, we believe
+                    that education should be accessible to everyone. That's why
+                    we offer a wide array of free courses and tutorials,
+                    designed to help you gain new skills and knowledge at your
+                    own pace. From coding and digital marketing to creative
+                    writing and personal development, our expert-led content is
+                    here to support your journey. Start exploring our resources
+                    now and take the first step towards achieving your dreams —
+                    All without spending a dime!
                 </p>
                 <div
-                    class="flex flex-col justify-center gap-2 px-10 mt-8 sm:flex-row"
+                    class="flex justify-start items-center gap-1 mt-8 border-[1px] border-white flex-row px-[5px] rounded-full w-[350px]"
                 >
                     <input
                         type="text"
-                        class="p-2 bg-transparent border border-white rounded outline-none md:w-[400px]"
-                        placeholder="Search for information..."
+                        class="p-2 bg-transparent outline-none grow placeholder:text-white"
+                        placeholder="Search courses, tutorials..."
                         [(ngModel)]="searchQuery"
+                        (input)="handleQueryChange()"
+                        (keydown)="handleKeyPress($event)"
                     />
                     <button
-                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
-                        (click)="handlerSearch()"
-                    >
-                        Search <mat-icon>search</mat-icon>
-                    </button>
-                    <button
-                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
                     >
-                        Clear <mat-icon>close</mat-icon>
+                        <mat-icon>close</mat-icon>
                     </button>
                 </div>
             </div>
@@ -49,7 +65,7 @@
         <div class="container flex justify-between mx-auto" id="search-result">
             <p>
                 Search results for "<span class="italic font-semibold">{{
-                    searchQuery
+                    searchQueryDelayed
                 }}</span
                 >" ( <span class="font-semibold">{{ posts.length }}</span>
                 Results )
@@ -75,7 +91,7 @@
                 >
                     <img
                         class="object-cover object-center w-full lg:h-48 md:h-36"
-                        src="{{ post?.images?.[0]?.url  || '/assets/card-default.jpg'}}"
+                        src="{{ post?.images?.[0]?.url  || '/assets/couress.png'}}"
                         alt="blog"
                     />
                     <div class="p-6 border-t">
@@ -85,7 +101,8 @@
                             {{ post.title }}
                         </h1>
                         <p class="mb-3 leading-relaxed">
-                            {{ post.description | clipText }}
+                            <!-- [innerHTML]="post.description" -->
+                            {{ post.description | removeHtml | clipText }}
                         </p>
                         <p class="mb-3 leading-relaxed">
                             <span class="font-semibold">Publisher : </span
@@ -132,8 +149,10 @@
     <!-- No records to display -->
     <section *ngIf="!isLoading && posts.length === 0" class="my-24">
         <div class="container mx-auto text-center">
-            <img src="/assets/no-data.jpg" class="mx-auto w-[500px]" alt="" />
-            <h1 class="text-2xl font-semibold">No records to display</h1>
+            <img src="/assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
+            <h1 class="text-2xl font-semibold">
+                No tutorials/courses to display
+            </h1>
         </div>
     </section>
     <app-footer></app-footer>
