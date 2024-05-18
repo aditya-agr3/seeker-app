@@ -1,11 +1,11 @@
-<main>
+<main class="overflow-clip">
     <app-navbar [hero]="true"></app-navbar>
 
     <!-- Hero Section -->
     <section class="bg-hero h-[100vh] bg-no-repeat bg-cover bg-center">
         <!-- Hero Content -->
         <div
-            class="flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.4)]"
+            class="flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.2)]"
         >
             <div class="text-center text-white">
                 <h1 class="text-3xl font-semibold">
@@ -18,26 +18,22 @@
                     expertise, right at your fingertips.
                 </p>
                 <div
-                    class="flex flex-col justify-center gap-2 px-10 mt-8 sm:flex-row"
+                    class="sticky top-0 flex flex-col justify-start items-center gap-1 mx-auto mt-8 border-[1px] border-white sm:flex-row w-fit px-[5px] rounded-full md:w-[400px]"
                 >
                     <input
                         type="text"
-                        class="p-2 bg-transparent border border-white rounded outline-none md:w-[400px]"
-                        placeholder="Search for information..."
+                        class="p-2 bg-transparent outline-none grow"
+                        placeholder="Search courses, tutorials..."
                         [(ngModel)]="searchQuery"
+                        (input)="handleQueryChange()"
+                        (keydown)="handleKeyPress($event)"
                     />
                     <button
-                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
-                        (click)="handlerSearch()"
-                    >
-                        Search <mat-icon>search</mat-icon>
-                    </button>
-                    <button
-                        class="flex items-center justify-center gap-1 px-3 py-2 text-gray-600 capitalize bg-white rounded hover:bg-gray-200"
+                        class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
                     >
-                        Clear <mat-icon>close</mat-icon>
+                        <mat-icon>close</mat-icon>
                     </button>
                 </div>
             </div>
@@ -85,6 +81,7 @@
                             {{ post.title }}
                         </h1>
                         <p class="mb-3 leading-relaxed">
+                            <!-- [innerHTML]="post.description" -->
                             {{ post.description | clipText }}
                         </p>
                         <p class="mb-3 leading-relaxed">

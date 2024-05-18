@@ -35,29 +35,13 @@ export class HomeComponent {
     constructor(private searchService: SearchService) {}
 
     ngOnInit() {
-        this.fetchPostCache();
+        this.fetchPosts();
     }
 
-    fetchPost() {
-        this.searchService.getInformation().subscribe((data) => {
-            for (let response of data.responses) {
-                // console.log('Provider : ', response.message.catalog.providers);
-                for (let provider of response.message.catalog.providers) {
-                    // console.log('items : ', provider.items);
-                    for (let item of provider.items) {
-                        // console.log('item descriptor : ', item.descriptor);
-                        this.posts.push(item.descriptor);
-                    }
-                }
-            }
-        });
-    }
-
-    fetchPostCache() {
+    fetchPosts(searchQuery?: string) {
         this.isLoading = true;
-        this.searchService.getInformationCache().subscribe((data) => {
-            console.log('API Response : ', data?.data?.vistaar_cache_db);
-            this.posts = data?.data?.vistaar_cache_db;
+        this.searchService.getPosts(searchQuery).subscribe((data) => {
+            this.posts = data?.data?.kahani_cache_dev;
             this.isLoading = false;
         });
     }
@@ -66,16 +50,7 @@ export class HomeComponent {
         this.isSearched = true;
         if (this.searchQuery) {
             this.isLoading = true;
-            this.searchService
-                .getInformationCache(this.searchQuery)
-                .subscribe((data) => {
-                    console.log(
-                        'API Response : ',
-                        data?.data?.vistaar_cache_db
-                    );
-                    this.posts = data?.data?.vistaar_cache_db;
-                    this.isLoading = false;
-                });
+            this.fetchPosts(this.searchQuery);
             const searchResultElement =
                 document.getElementById('search-result');
             if (searchResultElement) {
@@ -91,6 +66,17 @@ export class HomeComponent {
     handlerClear() {
         this.isSearched = false;
         this.searchQuery = '';
-        this.fetchPostCache();
+        this.fetchPosts();
+    }
+
+    handleQueryChange() {
+        if (!this.searchQuery) {
+            this.handlerClear();
+        }
+    }
+    handleKeyPress($event: any) {
+        if ($event.key === 'Enter') {
+            this.handlerSearch();
+        }
     }
 }

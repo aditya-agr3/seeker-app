@@ -4,11 +4,12 @@
 @tailwind utilities;
 
 .bg-hero {
-    background-image: url("/assets/field-land-1.jpg");
+    /* background-image: url("/assets/field-land-1.jpg"); */
+    background-image: url("/assets/hero-1.jpg");
 }
 
 .shadow-1 {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for visibility */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for visibility */
 }
 
 .navbar-hero {
@@ -17,5 +18,11 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
