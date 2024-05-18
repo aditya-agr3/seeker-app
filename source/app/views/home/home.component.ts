@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ClipTextPipe } from '../../shared/pipes/clip-text.pipe';
+import { RemoveHtmlPipe } from '../../shared/pipes/remove-html.pipe';
 
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
@@ -19,6 +20,7 @@ import { SearchService } from '../../core/services/search.service';
         FooterComponent,
         CommonModule,
         ClipTextPipe,
+        RemoveHtmlPipe,
         FormsModule,
         MatIconModule,
         RouterModule,
