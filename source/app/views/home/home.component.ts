@@ -31,6 +31,7 @@ import { SearchService } from '../../core/services/search.service';
 export class HomeComponent {
     posts: any = [];
     searchQuery: string = '';
+    searchQueryDelayed: any;
     isLoading: boolean = false;
     isSearched: boolean = false;
 
@@ -53,6 +54,9 @@ export class HomeComponent {
         if (this.searchQuery) {
             this.isLoading = true;
             this.fetchPosts(this.searchQuery);
+
+            this.searchQueryDelayed = this.searchQuery;
+
             const searchResultElement =
                 document.getElementById('search-result');
             if (searchResultElement) {

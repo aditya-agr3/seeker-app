@@ -65,7 +65,7 @@
         <div class="container flex justify-between mx-auto" id="search-result">
             <p>
                 Search results for "<span class="italic font-semibold">{{
-                    searchQuery
+                    searchQueryDelayed
                 }}</span
                 >" ( <span class="font-semibold">{{ posts.length }}</span>
                 Results )
@@ -149,8 +149,8 @@
     <!-- No records to display -->
     <section *ngIf="!isLoading && posts.length === 0" class="my-24">
         <div class="container mx-auto text-center">
-            <img src="/assets/no-data.jpg" class="mx-auto w-[500px]" alt="" />
-            <h1 class="text-2xl font-semibold">No records to display</h1>
+            <img src="/assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
+            <h1 class="text-2xl font-semibold">No Tutorials/Courses display</h1>
         </div>
     </section>
     <app-footer></app-footer>
