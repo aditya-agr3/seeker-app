@@ -7,7 +7,7 @@
                 <img
                     alt="ecommerce"
                     class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto"
-                    src="/assets/card-default.jpg"
+                    src="/assets/couress.png"
                 />
                 <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
                     <h2
@@ -18,7 +18,7 @@
                     <h1
                         class="mb-1 text-3xl font-medium text-gray-900 title-font"
                     >
-                        {{ postDetails.title || "Mango farming" }}
+                        {{ postDetails?.descriptor?.name || "Loading..." }}
                     </h1>
                     <div class="flex mb-4">
                         <span class="flex items-center">
@@ -28,7 +28,7 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                class="w-4 h-4 text-yellow-500"
+                                class="w-4 h-4 text-c-1"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -41,7 +41,7 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                class="w-4 h-4 text-yellow-500"
+                                class="w-4 h-4 text-c-1"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -54,7 +54,7 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                class="w-4 h-4 text-yellow-500"
+                                class="w-4 h-4 text-c-1"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -67,7 +67,7 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                class="w-4 h-4 text-yellow-500"
+                                class="w-4 h-4 text-c-1"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -80,7 +80,7 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                class="w-4 h-4 text-yellow-500"
+                                class="w-4 h-4 text-c-1"
                                 viewBox="0 0 24 24"
                             >
                                 <path
@@ -137,7 +137,9 @@
                         </span>
                     </div>
                     <p class="leading-relaxed text-justify">
-                        {{ postDetails?.description }}
+                        {{
+                            postDetails?.descriptor?.short_desc || "Loading..."
+                        }}
                     </p>
                     <div
                         class="flex items-center pb-5 mt-6 mb-5 border-b-2 border-gray-100"
@@ -145,18 +147,14 @@
                     <div class="flex justify-between">
                         <span
                             class="text-2xl font-medium text-gray-900 title-font"
-                            >$58.00</span
                         >
+                            ₹{{ postDetails?.price?.value || "0" }}
+                        </span>
                         <div class="flex gap-2">
                             <button
-                                class="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
+                                class="flex px-6 py-2 ml-auto text-white border-0 rounded bg-c-1 focus:outline-none hover:bg-c-1.1"
                             >
-                                Watch Video
-                            </button>
-                            <button
-                                class="flex px-6 py-2 ml-auto text-white bg-yellow-500 border-0 rounded focus:outline-none hover:bg-yellow-600"
-                            >
-                                View PDF
+                                Enroll Now
                             </button>
                         </div>
                     </div>
@@ -165,7 +163,7 @@
         </div>
     </section>
 
-    <section class="text-gray-600 body-font">
+    <section class="hidden text-gray-600 body-font">
         <h1 class="text-5xl text-center">Comments</h1>
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap -m-4">
@@ -245,5 +243,5 @@
         </div>
     </section>
     <app-footer></app-footer>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </main>
