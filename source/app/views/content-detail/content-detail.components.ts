@@ -3,12 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
+import { RouterModule } from '@angular/router';
 import { SelectService } from '../../core/services/select.service';
 
 @Component({
     selector: 'app-about-us',
     standalone: true,
-    imports: [NavbarComponent, FooterComponent],
+    imports: [NavbarComponent, FooterComponent, RouterModule],
     templateUrl: './content-detail.component.html',
     styleUrl: './content-detail.component.css',
 })
