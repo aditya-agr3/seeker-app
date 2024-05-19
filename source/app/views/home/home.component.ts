@@ -35,6 +35,11 @@ export class HomeComponent {
     isLoading: boolean = false;
     isSearched: boolean = false;
 
+    paginatedPosts: any[] = [];
+    currentPage: number = 1;
+    totalPages: number = 1;
+    postsPerPage: number = 6;
+
     constructor(private searchService: SearchService) {}
 
     ngOnInit() {
@@ -46,7 +51,33 @@ export class HomeComponent {
         this.searchService.getPosts(searchQuery).subscribe((data) => {
             this.posts = data?.data?.kahani_cache_dev;
             this.isLoading = false;
+            this.updatePagination();
         });
+    }
+
+    updatePagination() {
+        this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
+        this.paginatePosts();
+    }
+
+    paginatePosts() {
+        const startIndex = (this.currentPage - 1) * this.postsPerPage;
+        const endIndex = startIndex + this.postsPerPage;
+        this.paginatedPosts = this.posts.slice(startIndex, endIndex);
+    }
+
+    nextPage() {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+            this.paginatePosts();
+        }
+    }
+
+    previousPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.paginatePosts();
+        }
     }
 
     handlerSearch() {
