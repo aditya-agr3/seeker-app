@@ -133,7 +133,7 @@
     </section>
 
     <!-- Pagination Controls -->
-    <section class="mb-24 -mt-12">
+    <section *ngIf="!isLoading && posts.length > 0" class="mb-24 -mt-12">
         <div
             class="container flex items-center justify-between p-4 mx-auto my-8"
         >
