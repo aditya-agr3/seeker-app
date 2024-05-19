@@ -13,26 +13,30 @@ import { SelectService } from '../../core/services/select.service';
     styleUrl: './content-detail.component.css',
 })
 export class ContentDetailComponent {
-    id!: number;
     postDetails: any = {};
+    providerId!: string;
+    itemId!: string;
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private selectService: SelectService
     ) {
-        this.activatedRoute.params.subscribe((params) => {
-            this.id = params?.['id'];
+        this.activatedRoute.queryParams.subscribe((params) => {
+            this.providerId = params['provider_id'];
+            this.itemId = params['item_id'];
         });
     }
 
     ngOnInit() {
-        this.fetchPostDetailsCache();
+        this.fetchPostDetails();
     }
 
-    fetchPostDetailsCache() {
-        this.selectService.getPostDetailsCache(this.id).subscribe((data) => {
-            console.dir(data?.data?.vistaar_cache_db);
-            this.postDetails = data?.data?.vistaar_cache_db;
-        });
+    fetchPostDetails() {
+        this.selectService
+            .getPostDetails(this.providerId, this.itemId)
+            .subscribe((data) => {
+                this.postDetails = data?.responses[0]?.message?.order?.items[0];
+                console.log('postDetails: ', this.postDetails);
+            });
     }
 }
