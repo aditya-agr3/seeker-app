@@ -6,5 +6,5 @@ import { ContentDetailComponent } from './views/content-detail/content-detail.co
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'about-us', component: AboutUsComponent },
-    { path: 'details/:id', component: ContentDetailComponent },
+    { path: 'details', component: ContentDetailComponent },
 ];
