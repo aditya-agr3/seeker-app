@@ -7,22 +7,22 @@ import { DataService } from './data.service';
 @Injectable({
     providedIn: 'root',
 })
-export class SelectService {
+export class ConfirmService {
     private apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient, private dataService: DataService) {}
 
-    getPostDetails(providerId: string, itemId: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/select`, {
+    getCourseDetails(providerId: string, itemId: string): Observable<any> {
+        return this.http.post(`${this.apiUrl}/confirm`, {
             context: {
                 domain: 'onest:learning-experiences',
-                action: 'select',
+                action: 'confirm',
                 version: '1.1.0',
                 bap_id: 'kahani-bap.tekdinext.com',
                 bap_uri: 'https://kahani-bap.tekdinext.com/',
                 bpp_id: 'kahani-bpp.tekdinext.com',
                 bpp_uri: 'https://kahani-bpp.tekdinext.com/',
-                transaction_id: this.dataService.getNewTransactionId(),
+                transaction_id: this.dataService.getTansactionId(),
                 message_id: this.dataService.getUuid(),
                 timestamp: this.dataService.getTimestamp(),
             },

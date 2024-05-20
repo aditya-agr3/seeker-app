@@ -7,13 +7,17 @@ import { DataService } from './data.service';
 @Injectable({
     providedIn: 'root',
 })
-export class SelectService {
+export class InitService {
     private apiUrl = environment.apiUrl;
 
     constructor(private http: HttpClient, private dataService: DataService) {}
 
-    getPostDetails(providerId: string, itemId: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}/select`, {
+    submitDetails(
+        providerId: string,
+        itemId: string,
+        data: any
+    ): Observable<any> {
+        return this.http.post(`${this.apiUrl}/init`, {
             context: {
                 domain: 'onest:learning-experiences',
                 action: 'select',
@@ -22,7 +26,7 @@ export class SelectService {
                 bap_uri: 'https://kahani-bap.tekdinext.com/',
                 bpp_id: 'kahani-bpp.tekdinext.com',
                 bpp_uri: 'https://kahani-bpp.tekdinext.com/',
-                transaction_id: this.dataService.getNewTransactionId(),
+                transaction_id: this.dataService.getTansactionId(),
                 message_id: this.dataService.getUuid(),
                 timestamp: this.dataService.getTimestamp(),
             },
@@ -36,8 +40,24 @@ export class SelectService {
                             id: itemId,
                         },
                     ],
+                    fulfillments: [
+                        {
+                            customer: {
+                                person: {
+                                    name: data.name,
+                                    age: data.age,
+                                },
+                            },
+                            contact: {
+                                phone: data.phone,
+                                email: data.email,
+                            },
+                        },
+                    ],
                 },
             },
         });
     }
 }
+
+export class SelectService {}

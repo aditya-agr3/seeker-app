@@ -4,25 +4,25 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 import { RouterModule } from '@angular/router';
-import { SelectService } from '../../core/services/select.service';
+import { ConfirmService } from '../../core/services/confirm.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-about-us',
+    selector: 'app-course',
     standalone: true,
-    imports: [NavbarComponent, FooterComponent, RouterModule, CommonModule],
-    templateUrl: './content-detail.component.html',
-    styleUrl: './content-detail.component.css',
+    imports: [FooterComponent, NavbarComponent],
+    templateUrl: './course.component.html',
+    styleUrl: './course.component.css',
 })
-export class ContentDetailComponent {
-    isLoading: boolean = false;
+export class CourseComponent {
+    isLoading = false;
     postDetails: any = {};
     providerId!: string;
     itemId!: string;
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private selectService: SelectService
+        private confirmService: ConfirmService
     ) {
         this.activatedRoute.queryParams.subscribe((params) => {
             this.providerId = params['provider_id'];
@@ -31,16 +31,15 @@ export class ContentDetailComponent {
     }
 
     ngOnInit() {
-        this.fetchPostDetails();
+        this.fetchCourse();
     }
 
-    fetchPostDetails() {
+    fetchCourse() {
         this.isLoading = true;
-        this.selectService
-            .getPostDetails(this.providerId, this.itemId)
+        this.confirmService
+            .getCourseDetails(this.providerId, this.itemId)
             .subscribe((data) => {
-                this.postDetails = data?.responses[0]?.message?.order?.items[0];
-                console.log('postDetails: ', this.postDetails);
+                console.log('data ', data);
                 this.isLoading = false;
             });
     }
