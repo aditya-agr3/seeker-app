@@ -19,6 +19,7 @@ export class CourseComponent {
     postDetails: any = {};
     providerId!: string;
     itemId!: string;
+    userDetails!: any;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -28,6 +29,11 @@ export class CourseComponent {
             this.providerId = params['provider_id'];
             this.itemId = params['item_id'];
         });
+
+        let user = localStorage.getItem('userDetails');
+        if (user) {
+            this.userDetails = JSON.parse(user);
+        }
     }
 
     ngOnInit() {
@@ -37,7 +43,7 @@ export class CourseComponent {
     fetchCourse() {
         this.isLoading = true;
         this.confirmService
-            .getCourseDetails(this.providerId, this.itemId)
+            .getCourseDetails(this.providerId, this.itemId, this.userDetails)
             .subscribe((data) => {
                 console.log('data ', data);
                 this.isLoading = false;

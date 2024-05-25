@@ -21,7 +21,10 @@
                     <h1
                         class="mb-1 text-3xl font-medium text-gray-900 title-font"
                     >
-                        {{ postDetails?.descriptor?.name || "Loading..." }}
+                        {{
+                            postDetails?.descriptor?.name ||
+                                "No responce to display"
+                        }}
                     </h1>
                     <div class="flex mb-4">
                         <span class="flex items-center">
@@ -141,7 +144,8 @@
                     </div>
                     <p class="leading-relaxed text-justify">
                         {{
-                            postDetails?.descriptor?.short_desc || "Loading..."
+                            postDetails?.descriptor?.short_desc ||
+                                "No description to display"
                         }}
                     </p>
                     <div

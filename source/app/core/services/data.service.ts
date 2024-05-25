@@ -8,7 +8,7 @@ export class DataService {
     messageId = uuidv4();
     constructor() {}
 
-    getTansactionId() {
+    getTransactionId() {
         return this.messageId;
     }
 
