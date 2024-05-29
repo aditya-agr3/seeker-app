@@ -1,7 +1,28 @@
 <main class="overflow-clip">
     <app-navbar [hero]="false"></app-navbar>
 
-    <section class="h-[500px]"></section>
+    <section
+        class="h-[100vh] flex justify-center items-center"
+        *ngIf="isLoading"
+    >
+        <div class="loader"></div>
+    </section>
+
+    <section class="min-h-[100vh] mt-[80px]" *ngIf="!isLoading">
+        <div></div>
+        <div>
+            <iframe
+                [src]="courseUrl"
+                width="100%"
+                frameborder="0"
+                title="course"
+                class="h-[1000px]"
+                scrolling="no"
+                id="courseIframe"
+                #courseIframe
+            ></iframe>
+        </div>
+    </section>
 
     <app-footer></app-footer>
 </main>

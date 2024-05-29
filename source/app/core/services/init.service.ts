@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environment/environment';
 import { DataService } from './data.service';
+
+type SelectApiResponse = {
+    context: {
+        transaction_id: string;
+        message_id: string;
+        timestamp: string;
+    };
+    responses: any[];
+};
 
 @Injectable({
     providedIn: 'root',
@@ -20,13 +29,13 @@ export class InitService {
         return this.http.post(`${this.apiUrl}/init`, {
             context: {
                 domain: 'onest:learning-experiences',
-                action: 'select',
+                action: 'init',
                 version: '1.1.0',
                 bap_id: 'kahani-bap.tekdinext.com',
                 bap_uri: 'https://kahani-bap.tekdinext.com/',
                 bpp_id: 'kahani-bpp.tekdinext.com',
                 bpp_uri: 'https://kahani-bpp.tekdinext.com/',
-                transaction_id: this.dataService.getTansactionId(),
+                transaction_id: this.dataService.getTransactionId(),
                 message_id: this.dataService.getUuid(),
                 timestamp: this.dataService.getTimestamp(),
             },
@@ -46,11 +55,32 @@ export class InitService {
                                 person: {
                                     name: data.name,
                                     age: data.age,
+                                    tags: [
+                                        {
+                                            code: 'distributor-details',
+                                            list: [
+                                                {
+                                                    descriptor: {
+                                                        code: 'distributor-name',
+                                                        name: 'Distributor Name',
+                                                    },
+                                                    value: '',
+                                                },
+                                                {
+                                                    descriptor: {
+                                                        code: 'agent-id',
+                                                        name: 'Agent Id',
+                                                    },
+                                                    value: '',
+                                                },
+                                            ],
+                                        },
+                                    ],
                                 },
-                            },
-                            contact: {
-                                phone: data.phone,
-                                email: data.email,
+                                contact: {
+                                    phone: data.phone,
+                                    email: data.email,
+                                },
                             },
                         },
                     ],

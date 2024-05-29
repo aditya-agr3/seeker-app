@@ -53,7 +53,13 @@ export class EnrollFormComponent {
             .submitDetails(this.providerId, this.itemId, this.enrollForm.value)
             .subscribe((data) => {
                 this.isLoading = false;
-                // navigate to /course
+
+                // save form data in local storage
+                localStorage.setItem(
+                    'userDetails',
+                    JSON.stringify(this.enrollForm.value)
+                );
+
                 this.router.navigate(['/course'], {
                     queryParams: {
                         provider_id: this.providerId,

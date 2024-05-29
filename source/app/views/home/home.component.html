@@ -99,8 +99,9 @@
                 >
                     <img
                         class="object-cover object-center w-full lg:h-48 md:h-36"
-                        src="{{ post?.images?.[0]?.url  || '/assets/couress.png'}}"
-                        alt="blog"
+                        src="{{ post?.image_url || '/assets/couress.png' }}"
+                        alt="image"
+                        onerror="this.onerror=null; this.src='/assets/couress.png'"
                     />
                     <div class="p-6 border-t">
                         <h1
@@ -149,7 +150,7 @@
                 <button
                     (click)="previousPage()"
                     [disabled]="currentPage === 1"
-                    class="px-3 py-1 pb-1.5 border rounded"
+                    class="px-3 py-1 pb-1.5 border rounded cursor-pointer"
                 >
                     &larr;
                 </button>
@@ -161,7 +162,7 @@
                 <button
                     (click)="nextPage()"
                     [disabled]="currentPage === totalPages"
-                    class="px-3 py-1 pb-1.5 border rounded"
+                    class="px-3 py-1 pb-1.5 border rounded cursor-pointer"
                 >
                     &rarr;
                 </button>

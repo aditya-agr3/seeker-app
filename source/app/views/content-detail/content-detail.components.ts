@@ -40,7 +40,6 @@ export class ContentDetailComponent {
             .getPostDetails(this.providerId, this.itemId)
             .subscribe((data) => {
                 this.postDetails = data?.responses[0]?.message?.order?.items[0];
-                console.log('postDetails: ', this.postDetails);
                 this.isLoading = false;
             });
     }
