@@ -48,11 +48,11 @@
                         (input)="handleQueryChange()"
                         (keydown)="handleKeyPress($event)"
                     />
-                    <button 
-
-                    (click)="handlerSearch()" [disabled]="isLoading"
-
-                    (click="toSearchResult()")
+                    <button
+                        (click)="handlerSearch()"
+                        [disabled]="isLoading"
+                        (click="toSearchResult()"
+                        )
                         class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
@@ -67,7 +67,7 @@
     <!-- search resualt for ... -->
     <section *ngIf="isSearched && searchQuery" class="mt-24 mb-[-48px] px-5">
         <div class="container flex justify-between mx-auto" id="search-result">
-            <p class=" text-2xl">
+            <p>
                 Search results for "<span class="italic font-semibold">{{
                     searchQueryDelayed
                 }}</span

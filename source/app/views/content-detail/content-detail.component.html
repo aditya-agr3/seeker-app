@@ -1,7 +1,17 @@
 <main>
     <app-navbar [hero]="false"></app-navbar>
 
-    <section class="overflow-hidden text-gray-600 body-font mt-[80px]">
+    <section
+        class="h-[100vh] flex justify-center items-center"
+        *ngIf="isLoading"
+    >
+        <div class="loader"></div>
+    </section>
+
+    <section
+        class="overflow-hidden text-gray-600 body-font mt-[80px]"
+        *ngIf="!isLoading"
+    >
         <div class="container px-5 py-24 mx-auto">
             <div class="flex flex-wrap mx-auto lg:w-4/5">
                 <img
