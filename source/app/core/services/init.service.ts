@@ -54,7 +54,7 @@ export class InitService {
                             customer: {
                                 person: {
                                     name: data.name,
-                                    age: data.age,
+                                    age: String(data.age),
                                     tags: [
                                         {
                                             code: 'distributor-details',
@@ -78,7 +78,7 @@ export class InitService {
                                     ],
                                 },
                                 contact: {
-                                    phone: data.phone,
+                                    phone: String(data.phone),
                                     email: data.email,
                                 },
                             },

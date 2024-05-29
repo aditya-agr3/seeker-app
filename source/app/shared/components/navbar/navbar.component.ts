@@ -3,41 +3,39 @@ import { RouterModule } from '@angular/router';
 import { Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [RouterModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
+    selector: 'app-navbar',
+    standalone: true,
+    imports: [RouterModule, CommonModule],
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  // isSearchVisible: boolean = false;
+    // isSearchVisible: boolean = false;
 
-  @Input() hero!: boolean;
-  isScrolled: boolean = false;
+    @Input() hero!: boolean;
+    isScrolled: boolean = false;
 
-  constructor(private location: Location, private router: Router) { }
+    constructor(private location: Location, private router: Router) {}
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    // If the navbar is in hero mode, don't change the background color
-    this.isScrolled = window.pageYOffset >= window.innerHeight;
-    // Detect if the user has scrolled down 100vh
-  }
-
-
-
-  goBack(): void {
-    if (window.history.length > 1) {
-      this.location.back();
-    } else {
-      this.router.navigate(['/']);
+    @HostListener('window:scroll', [])
+    onWindowScroll() {
+        // If the navbar is in hero mode, don't change the background color
+        this.isScrolled = window.pageYOffset >= window.innerHeight;
+        // Detect if the user has scrolled down 100vh
     }
-  }
 
-//   toggleSearch() {
-//     this.isSearchVisible = !this.isSearchVisible;
-//   }
+    goBack(): void {
+        if (window.history.length > 1) {
+            this.location.back();
+        } else {
+            this.router.navigate(['/']);
+        }
+    }
 
+    //   toggleSearch() {
+    //     this.isSearchVisible = !this.isSearchVisible;
+    //   }
 }

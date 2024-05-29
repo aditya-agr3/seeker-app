@@ -158,7 +158,10 @@
                         >
                             ₹{{ postDetails?.price?.value || "0" }}
                         </span>
-                        <div class="flex gap-2">
+                        <div
+                            class="flex gap-2"
+                            *ngIf="postDetails?.descriptor?.name"
+                        >
                             <a
                                 [routerLink]="['/enroll']"
                                 [queryParams]="{

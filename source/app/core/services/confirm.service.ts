@@ -67,7 +67,7 @@ export class ConfirmService {
                             },
                             creator: {
                                 descriptor: {
-                                    name: 'Vowel',
+                                    name: '',
                                 },
                             },
                             price: {
@@ -226,33 +226,33 @@ export class ConfirmService {
                             ],
                         },
                     ],
-                    xinput: {
-                        head: {
-                            descriptor: {
-                                name: 'Application Form',
-                            },
-                            index: {
-                                min: 0,
-                                cur: 1,
-                                max: 1,
-                            },
-                        },
-                        form: {
-                            url:
-                                'https://onest-bap.tekdinext.com/application/334/' +
-                                this.dataService.getTransactionId(),
-                            mime_type: 'text/html',
-                            resubmit: false,
-                            submission_id: this.dataService.getUuid(),
-                        },
-                        required: true,
-                    },
+                    // xinput: {
+                    //     head: {
+                    //         descriptor: {
+                    //             name: 'Application Form',
+                    //         },
+                    //         index: {
+                    //             min: 0,
+                    //             cur: 1,
+                    //             max: 1,
+                    //         },
+                    //     },
+                    //     form: {
+                    //         url:
+                    //             'https://onest-bap.tekdinext.com/application/334/' +
+                    //             this.dataService.getTransactionId(),
+                    //         mime_type: 'text/html',
+                    //         resubmit: false,
+                    //         submission_id: this.dataService.getUuid(),
+                    //     },
+                    //     required: true,
+                    // },
                     fulfillments: [
                         {
                             customer: {
                                 person: {
-                                    name: '',
-                                    age: '',
+                                    name: data.name,
+                                    age: String(data.age),
                                     tags: [
                                         {
                                             code: 'distributor-details',
@@ -276,8 +276,8 @@ export class ConfirmService {
                                     ],
                                 },
                                 contact: {
-                                    phone: '',
-                                    email: '',
+                                    phone: String(data.phone),
+                                    email: data.email,
                                 },
                             },
                         },
