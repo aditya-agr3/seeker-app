@@ -26,9 +26,9 @@ export class ConfirmService {
                 bap_uri: 'https://kahani-bap.tekdinext.com/',
                 bpp_id: 'kahani-bpp.tekdinext.com',
                 bpp_uri: 'https://kahani-bpp.tekdinext.com/',
-                transaction_id: '',
-                message_id: '',
-                timestamp: '2024-05-14T11:41:36.835Z',
+                transaction_id: this.dataService.getTransactionId(),
+                message_id: this.dataService.getUuid(),
+                timestamp: this.dataService.getTimestamp(),
             },
             message: {
                 order: {
@@ -57,13 +57,11 @@ export class ConfirmService {
                                     count: 1,
                                 },
                             },
-                            parent_item_id: '334',
+                            parent_item_id: '',
                             descriptor: {
-                                name: 'How to Look for Better Opportunities as a Blue Collar Worker',
-                                short_desc:
-                                    'This comprehensive course offers a deep dive into the world of blue-collar jobs, focusing specifically on opportunities in renewable energy. From understanding the basics of blue-collar professions to exploring specialized fields like EV charging and solar energy, participants will gain valuable insights into building a rewarding career in the sustainable energy sector.',
-                                long_desc:
-                                    'This comprehensive course offers a deep dive into the world of blue-collar jobs, focusing specifically on opportunities in renewable energy. From understanding the basics of blue-collar professions to exploring specialized fields like EV charging and solar energy, participants will gain valuable insights into building a rewarding career in the sustainable energy sector.',
+                                name: '',
+                                short_desc: '',
+                                long_desc: '',
                                 images: [],
                                 media: [],
                             },
@@ -212,7 +210,7 @@ export class ConfirmService {
                                                     code: 'createdon',
                                                     name: 'createdon',
                                                 },
-                                                value: '2024-05-10T06:17:54.10338+00:00',
+                                                value: '',
                                             },
                                             {
                                                 display: true,
@@ -220,7 +218,7 @@ export class ConfirmService {
                                                     code: 'lastupdatedon',
                                                     name: 'lastupdatedon',
                                                 },
-                                                value: '2024-05-10T06:17:54.10338+00:00',
+                                                value: '',
                                             },
                                         ],
                                     },
@@ -240,11 +238,12 @@ export class ConfirmService {
                             },
                         },
                         form: {
-                            url: 'https://onest-bap.tekdinext.com/application/334/b2e2c51d-d29a-4873-87f8-d7a81bbba283',
+                            url:
+                                'https://onest-bap.tekdinext.com/application/334/' +
+                                this.dataService.getTransactionId(),
                             mime_type: 'text/html',
                             resubmit: false,
-                            submission_id:
-                                '304a2a0d-5cbd-4212-b20d-b64582a0282e',
+                            submission_id: this.dataService.getUuid(),
                         },
                         required: true,
                     },
