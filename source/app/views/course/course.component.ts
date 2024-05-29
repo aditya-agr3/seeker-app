@@ -55,16 +55,30 @@ export class CourseComponent {
         this.confirmService
             .getCourseDetails(this.providerId, this.itemId, this.userDetails)
             .subscribe((data) => {
-                this.courseDetails = data?.message?.order?.items[0];
+                this.courseDetails = data?.responses?.[0]?.message?.order;
                 this.isLoading = false;
+
+                console.log(this.courseDetails);
+
                 if (
-                    this.courseDetails?.['add-ons']?.[0]?.descriptor?.media?.[0]
-                        ?.url
+                    this.courseDetails?.fulfillments?.[0]?.stops?.[0]
+                        ?.instructions?.media?.[0]?.url
                 ) {
                     this.courseUrl =
                         this.sanitizer.bypassSecurityTrustResourceUrl(
-                            this.courseDetails?.['add-ons']?.[0]?.descriptor
-                                ?.media?.[0]?.url
+                            this.courseDetails?.fulfillments?.[0]?.stops?.[0]
+                                ?.instructions?.media?.[0]?.url
+                        );
+                }
+
+                if (
+                    this.courseDetails?.items[0]?.['add-ons']?.[0]?.descriptor
+                        ?.media?.[0]?.url
+                ) {
+                    this.courseUrl =
+                        this.sanitizer.bypassSecurityTrustResourceUrl(
+                            this.courseDetails?.items[0]?.['add-ons']?.[0]
+                                ?.descriptor?.media?.[0]?.url
                         );
                 }
             });
