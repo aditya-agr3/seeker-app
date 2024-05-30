@@ -33,7 +33,18 @@
                                 id="name"
                                 formControlName="name"
                                 class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-c-1 focus:ring-2 focus:ring-indigo-200"
+                                onkeydown="return /[a-z ]/i.test(event.key)"
                             />
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['name'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['name'].errors?.['required']
+                                "
+                            >
+                                Please enter your name
+                            </span>
                         </div>
                         <div class="relative mb-4">
                             <label
@@ -47,6 +58,26 @@
                                 formControlName="age"
                                 class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-c-1 focus:ring-2 focus:ring-indigo-200"
                             />
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['age'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['age'].errors?.['required']
+                                "
+                            >
+                                Please enter your age
+                            </span>
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['age'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['age'].errors?.['min']
+                                "
+                            >
+                                Please enter valid age
+                            </span>
                         </div>
                         <div class="relative mb-4">
                             <label
@@ -60,6 +91,16 @@
                                 formControlName="email"
                                 class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-c-1 focus:ring-2 focus:ring-indigo-200"
                             />
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['email'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['email'].errors?.['required']
+                                "
+                            >
+                                Please enter your email
+                            </span>
                         </div>
                         <div class="relative mb-4">
                             <label
@@ -73,6 +114,36 @@
                                 formControlName="phone"
                                 class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-c-1 focus:ring-2 focus:ring-indigo-200"
                             />
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['phone'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['phone'].errors?.['required']
+                                "
+                            >
+                                Please enter your phone number
+                            </span>
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['phone'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['phone'].errors?.['min']
+                                "
+                            >
+                                Please enter valid phone number
+                            </span>
+                            <span
+                                class="text-xs text-red-400"
+                                *ngIf="
+                                    (enrollForm.controls['phone'].touched ||
+                                        submitted) &&
+                                    enrollForm.controls['phone'].errors?.['max']
+                                "
+                            >
+                                Please enter valid phone number
+                            </span>
                         </div>
 
                         <button

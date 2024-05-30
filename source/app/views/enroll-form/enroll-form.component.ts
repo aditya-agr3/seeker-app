@@ -26,6 +26,7 @@ export class EnrollFormComponent {
     enrollForm!: FormGroup;
     providerId!: string;
     itemId!: string;
+    submitted = false;
 
     constructor(
         private fb: FormBuilder,
@@ -42,13 +43,30 @@ export class EnrollFormComponent {
     ngOnInit() {
         this.enrollForm = this.fb.group({
             name: ['', Validators.required],
-            age: ['', [Validators.required, Validators.min(18)]],
+            age: ['', [Validators.required, Validators.min(1)]],
             email: ['', [Validators.required, Validators.email]],
-            phone: ['', Validators.required],
+            phone: [
+                '',
+                [
+                    Validators.required,
+                    Validators.min(1000000000),
+                    Validators.max(9999999999),
+                ],
+            ],
         });
     }
     onSubmit() {
         this.isLoading = true;
+        this.submitted = true;
+
+        console.log(this.enrollForm);
+
+        if (!this.enrollForm.valid) {
+            this.isLoading = false;
+
+            return;
+        }
+
         this.initService
             .submitDetails(this.providerId, this.itemId, this.enrollForm.value)
             .subscribe((data) => {
