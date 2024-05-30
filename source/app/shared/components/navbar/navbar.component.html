@@ -20,10 +20,20 @@
                 [routerLink]="['/about-us']"
                 >About Us</a
             >
+            <a
+                class="mr-5 cursor-pointer hover:text-gray-900"
+                [routerLink]="['/resource']"
+                >Resource Library</a
+            >
+            <a
+                class="mr-5 cursor-pointer hover:text-gray-900"
+                [routerLink]="['/contact-us']"
+                >Contact Us</a
+            >
         </nav>
         <button
             (click)="goBack()"
-            class="inline-flex items-center px-3 py-1 text-base text-gray-600 bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200"
+            class="inline-flex items-center px-3 py-1 text-base text-black bg-gray-200 border-0 rounded focus:outline-none hover:bg-customBlue"
             (click)="goBack()"
             *ngIf="!hero"
         >

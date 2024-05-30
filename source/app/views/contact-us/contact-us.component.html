@@ -1,0 +1,55 @@
+
+
+<app-navbar [hero]="false"></app-navbar>
+
+<div class="max-w-screen-xl px-4 py-8 mx-auto bg-white lg:py-16 lg:px-6 bg-white-900">
+
+    <section class="bg-white" id="cont">
+        <div class="max-w-screen-md px-4 py-8 mx-auto lg:py-16">
+            <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-center text-black">
+                Contact Us
+            </h2>
+            <p class="mb-8 font-light text-center text-gray-500 lg:mb-16 dark:text-gray-400 sm:text-xl">
+                If you have any questions or need assistance, please feel free to reach out to us. We're here to help
+                you!
+            </p>
+            <form action="#" class="space-y-8">
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-black">
+                        Your email
+                    </label>
+                    <input type="email" id="email"
+                        class="shadow-sm bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                        placeholder="name@gmail.com" required />
+                </div>
+                <div>
+                    <label for="subject" class="block mb-2 text-sm font-medium text-black">
+                        Subject
+                    </label>
+                    <input type="text" id="subject"
+                        class="block w-full p-3 text-sm text-black border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="Let us know how we can help you" required />
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="message" class="block mb-2 text-sm font-medium text-black">
+                        Your message
+                    </label>
+                    <textarea id="message" rows="6"
+                        class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                        placeholder="Leave a comment..."></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="px-5 py-3 text-xl font-medium  text-center bg-customBlue text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">
+                        Send Message
+                    </button>
+                 
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+</div>
+<app-footer></app-footer>

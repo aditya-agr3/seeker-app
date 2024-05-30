@@ -1,0 +1,107 @@
+.heading{
+    text-align: center;
+    font-size: 3.5rem;
+}
+.HR{
+    font-size: 1rem;
+    line-height: 10.5rem;
+}
+
+.sr {
+    min-height: 100vh;
+    padding: 5rem 9% 2rem;
+}
+
+.portfolio {
+    background-color: blueviolet;
+  }
+  .portfolio h2 {
+    margin-bottom: 4rem;
+  }
+  
+  .portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+  }
+  
+  .portfolio-container .portfolio-box {
+    position: relative;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem skyblue;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .portfolio-box img {
+    width: 407px;
+    height: 300px;
+    transition: 0.5s ease;
+  }
+  
+  .portfolio-box:hover img {
+    transform: scale(1.1);
+  }
+  
+  .portfolio-box .portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: 0.5s ease;
+    /* color:rgb(227, 233, 211); */
+    color: var(--txt-color);
+    /* text-shadow : 1px 1px 2px black !important; */
+    text-shadow: wheat 1px 0 10px;
+  }
+  
+  .portfolio-box:hover .portfolio-layer {
+    transform: translateY(0);
+  }
+  .portfolio-box h4 {
+    font-size: 2rem;
+  
+  }
+  .portfolio-heading {
+    position: absolute;
+    top: 38%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0;
+  }
+  
+  .portfolio-layer p {
+    font-size: 1.6rem;
+    margin: 0.3rem 0 1rem;
+  }
+  
+  .portfolio-layer a {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: yellow;
+    border-radius: 50%;
+  }
+  
+  .portfolio-layer a i {
+    font-size: 2rem;
+    color: silver;
+  }
