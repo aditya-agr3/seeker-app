@@ -51,8 +51,7 @@
                     <button
                         (click)="handlerSearch()"
                         [disabled]="isLoading"
-                        (click="toSearchResult()"
-                        )
+                        (click)="toSearchResult()"
                         class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
