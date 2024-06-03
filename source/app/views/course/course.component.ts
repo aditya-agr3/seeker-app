@@ -22,8 +22,7 @@ export class CourseComponent {
     providerId!: string;
     itemId!: string;
     userDetails!: any;
-    courseUrl: any =
-        'https://trial.vowel.work/Onestcontent/course-library/how-to-look-for-better-opportunities-as-a-blue-collar-worker-hindi';
+    courseUrl: any = null;
     @ViewChild('courseIframe', { static: false })
     courseIframe!: ElementRef<HTMLIFrameElement>;
 
@@ -45,9 +44,28 @@ export class CourseComponent {
 
     ngOnInit() {
         this.fetchCourse();
-        this.courseUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-            this.courseUrl
-        );
+        // this.courseUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+        //     this.courseUrl
+        // );
+    }
+
+    convertToEmbedUrl(url: string): string {
+        let videoId: string;
+        const youtubeRegex =
+            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(youtubeRegex);
+
+        if (match && match[1]) {
+            videoId = match[1];
+            console.log(
+                'Embed url: ',
+                `https://www.youtube.com/embed/${videoId}`
+            );
+            return `https://www.youtube.com/embed/${videoId}`;
+        } else {
+            console.log('Url is not valid');
+            return url;
+        }
     }
 
     fetchCourse() {
@@ -55,6 +73,7 @@ export class CourseComponent {
         this.confirmService
             .getCourseDetails(this.providerId, this.itemId, this.userDetails)
             .subscribe((data) => {
+                console.log('data: ', data);
                 this.courseDetails = data?.responses?.[0]?.message?.order;
                 this.isLoading = false;
 
@@ -64,22 +83,32 @@ export class CourseComponent {
                     this.courseDetails?.fulfillments?.[0]?.stops?.[0]
                         ?.instructions?.media?.[0]?.url
                 ) {
+                    let url =
+                        this.courseDetails?.fulfillments?.[0]?.stops?.[0]
+                            ?.instructions?.media?.[0]?.url;
+
+                    url = this.convertToEmbedUrl(url);
+
                     this.courseUrl =
-                        this.sanitizer.bypassSecurityTrustResourceUrl(
-                            this.courseDetails?.fulfillments?.[0]?.stops?.[0]
-                                ?.instructions?.media?.[0]?.url
-                        );
+                        this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+                    return;
                 }
 
                 if (
                     this.courseDetails?.items[0]?.['add-ons']?.[0]?.descriptor
                         ?.media?.[0]?.url
                 ) {
+                    let url =
+                        this.courseDetails?.items[0]?.['add-ons']?.[0]
+                            ?.descriptor?.media?.[0]?.url;
+
+                    url = this.convertToEmbedUrl(url);
+
                     this.courseUrl =
-                        this.sanitizer.bypassSecurityTrustResourceUrl(
-                            this.courseDetails?.items[0]?.['add-ons']?.[0]
-                                ?.descriptor?.media?.[0]?.url
-                        );
+                        this.sanitizer.bypassSecurityTrustResourceUrl(url);
+
+                    return;
                 }
             });
     }

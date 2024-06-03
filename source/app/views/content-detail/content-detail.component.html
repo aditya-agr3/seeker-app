@@ -2,10 +2,11 @@
     <app-navbar [hero]="false"></app-navbar>
 
     <section
-        class="h-[100vh] flex justify-center items-center"
+        class="h-[100vh] flex justify-center items-center gap-2"
         *ngIf="isLoading"
     >
         <div class="loader"></div>
+        <div class="text-center">Please wait...</div>
     </section>
 
     <section
