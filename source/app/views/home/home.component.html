@@ -49,6 +49,9 @@
                         (keydown)="handleKeyPress($event)"
                     />
                     <button
+                        (click)="handlerSearch()"
+                        [disabled]="isLoading"
+                        (click)="toSearchResult()"
                         class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
@@ -82,17 +85,22 @@
             class="container p-4 grid grid-cols-1 gap-x-[2vw] gap-y-10 mx-auto justify-items-center md:grid-cols-2 xl:grid-cols-3"
         >
             <div
-                *ngFor="let post of posts"
+                *ngFor="let post of paginatedPosts"
                 class="transition-all duration-200 cursor-pointer hover:scale-[1.02] w-full"
             >
                 <a
                     class="block h-full overflow-hidden border-2 border-gray-200 rounded-lg border-opacity-60"
-                    [routerLink]="['/details', post.id]"
+                    [routerLink]="['/details']"
+                    [queryParams]="{
+                        provider_id: post.provider_id,
+                        item_id: post.item_id
+                    }"
                 >
                     <img
                         class="object-cover object-center w-full lg:h-48 md:h-36"
-                        src="{{ post?.images?.[0]?.url  || '/assets/couress.png'}}"
-                        alt="blog"
+                        src="{{ post?.image_url || 'assets/couress.png' }}"
+                        alt="image"
+                        onerror="this.onerror=null; this.src='assets/couress.png'"
                     />
                     <div class="p-6 border-t">
                         <h1
@@ -132,6 +140,48 @@
         </div>
     </section>
 
+    <!-- Pagination Controls -->
+    <section *ngIf="!isLoading && posts.length > 0" class="mb-24 -mt-12">
+        <div
+            class="container flex items-center justify-between p-4 mx-auto my-8"
+        >
+            <div class="flex items-center space-x-4">
+                <button
+                    (click)="previousPage()"
+                    [disabled]="currentPage === 1"
+                    class="px-3 py-1 pb-1.5 border rounded cursor-pointer"
+                >
+                    &larr;
+                </button>
+                <span
+                    >Page
+                    <span class="font-semibold">{{ currentPage }}</span> of
+                    {{ totalPages }}</span
+                >
+                <button
+                    (click)="nextPage()"
+                    [disabled]="currentPage === totalPages"
+                    class="px-3 py-1 pb-1.5 border rounded cursor-pointer"
+                >
+                    &rarr;
+                </button>
+            </div>
+            <div>
+                <label for="postsPerPage" class="mr-2">Posts per page</label>
+                <select
+                    id="postsPerPage"
+                    [(ngModel)]="postsPerPage"
+                    (change)="updatePagination()"
+                    class="border p-1.5 rounded px-2"
+                >
+                    <option *ngFor="let option of [6, 9, 12]" [value]="option">
+                        {{ option }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </section>
+
     <!-- Loading Content Shimmer -->
     <section *ngIf="isLoading" class="my-24">
         <div
@@ -149,7 +199,7 @@
     <!-- No records to display -->
     <section *ngIf="!isLoading && posts.length === 0" class="my-24">
         <div class="container mx-auto text-center">
-            <img src="/assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
+            <img src="assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
             <h1 class="text-2xl font-semibold">
                 No tutorials/courses to display
             </h1>

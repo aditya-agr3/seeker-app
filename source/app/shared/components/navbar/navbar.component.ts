@@ -2,19 +2,23 @@ import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [RouterModule],
+    imports: [RouterModule, CommonModule],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+    // isSearchVisible: boolean = false;
+
     @Input() hero!: boolean;
     isScrolled: boolean = false;
 
-    constructor(private router: Router) {}
+    constructor(private location: Location, private router: Router) {}
 
     @HostListener('window:scroll', [])
     onWindowScroll() {
@@ -23,7 +27,15 @@ export class NavbarComponent {
         // Detect if the user has scrolled down 100vh
     }
 
-    goBack() {
-        this.router.navigate(['../']); // Go back one level in the route hierarchy
+    goBack(): void {
+        if (window.history.length > 1) {
+            this.location.back();
+        } else {
+            this.router.navigate(['/']);
+        }
     }
+
+    //   toggleSearch() {
+    //     this.isSearchVisible = !this.isSearchVisible;
+    //   }
 }

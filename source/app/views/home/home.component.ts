@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -26,63 +26,113 @@ import { SearchService } from '../../core/services/search.service';
         RouterModule,
     ],
     templateUrl: './home.component.html',
-    styleUrl: './home.component.css',
+    styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-    posts: any = [];
-    searchQuery: string = '';
-    searchQueryDelayed: any;
-    isLoading: boolean = false;
-    isSearched: boolean = false;
+    posts: any = [];  
+    searchQuery: string = ''; 
+    searchQueryDelayed: any;  
+    isLoading: boolean = false;  
+    isSearched: boolean = false; 
 
-    constructor(private searchService: SearchService) {}
+    paginatedPosts: any[] = [];  
+    currentPage: number = 1;  
+    totalPages: number = 1;  
+    postsPerPage: number = 6; 
+
+    constructor(
+        private searchService: SearchService, 
+        private cdr: ChangeDetectorRef 
+    ) {}
 
     ngOnInit() {
-        this.fetchPosts();
+        this.fetchPosts();  
     }
 
+    // Fetch posts from the API with optional search query
     fetchPosts(searchQuery?: string) {
-        this.isLoading = true;
+        this.isLoading = true;  
         this.searchService.getPosts(searchQuery).subscribe((data) => {
-            this.posts = data?.data?.kahani_cache_dev;
-            this.isLoading = false;
+            this.posts = data?.data?.kahani_cache_dev; 
+            this.isLoading = false; 
+            this.updatePagination();  
         });
     }
 
-    handlerSearch() {
-        this.isSearched = true;
-        if (this.searchQuery) {
-            this.isLoading = true;
-            this.fetchPosts(this.searchQuery);
+    // Update pagination details
+    updatePagination() {
+        this.totalPages = Math.ceil(this.posts.length / this.postsPerPage); 
+        this.paginatePosts();
+    }
 
-            this.searchQueryDelayed = this.searchQuery;
+    // Slice posts array to get posts for the current page
+    paginatePosts() {
+        const startIndex = (this.currentPage - 1) * this.postsPerPage;
+        const endIndex = startIndex + this.postsPerPage;
+        this.paginatedPosts = this.posts.slice(startIndex, endIndex);  
+    }
 
-            const searchResultElement =
-                document.getElementById('search-result');
-            if (searchResultElement) {
-                searchResultElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'nearest',
-                });
-            }
+    // Move to the next page of posts
+    nextPage() {
+        if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+            this.paginatePosts();
         }
     }
 
-    handlerClear() {
-        this.isSearched = false;
-        this.searchQuery = '';
-        this.fetchPosts();
+    // Move to the previous page of posts
+    previousPage() {
+        if (this.currentPage > 1) {
+            this.currentPage--;
+            this.paginatePosts();
+        }
     }
 
+    // Handle search button click or Enter key press
+    handlerSearch() {
+        this.isSearched = true;  
+        if (this.searchQuery) {
+            this.isLoading = true;  
+            this.fetchPosts(this.searchQuery);  
+
+            this.searchQueryDelayed = this.searchQuery;  
+
+            this.cdr.detectChanges(); 
+
+            this.toSearchResult();
+        }
+    }
+
+    // Clear search and reset posts
+    handlerClear() {
+        this.isSearched = false;  
+        this.searchQuery = '';  
+        this.fetchPosts();  
+    }
+
+    // Handle changes to the search query input
     handleQueryChange() {
         if (!this.searchQuery) {
-            this.handlerClear();
+            this.handlerClear();  
         }
     }
-    handleKeyPress($event: any) {
-        if ($event.key === 'Enter') {
-            this.handlerSearch();
+
+    // Handle Enter key press event for the search input
+    handleKeyPress(event: KeyboardEvent) {
+        if (event.key === 'Enter') {
+            this.handlerSearch();  
+        }
+    }
+
+    // Scroll to the search result section smoothly
+    toSearchResult() {
+        const searchResultElement = document.getElementById('search-result');
+        if (searchResultElement) {
+            searchResultElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'nearest',
+            });
         }
     }
 }

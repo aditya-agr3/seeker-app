@@ -4,8 +4,8 @@
 @tailwind utilities;
 
 .bg-hero {
-    /* background-image: url("/assets/field-land-1.jpg"); */
-    background-image: url("/assets/hero-1.jpg");
+    /* background-image: url("assets/field-land-1.jpg"); */
+    background-image: url("assets/hero-1.jpg");
 }
 
 .shadow-1 {

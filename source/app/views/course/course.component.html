@@ -1,0 +1,40 @@
+<main class="overflow-clip">
+    <app-navbar [hero]="false"></app-navbar>
+
+    <section
+        class="h-[100vh] flex justify-center items-center gap-5 flex-col"
+        *ngIf="isLoading"
+    >
+        <div>Congratulations, You have successfully Enroll in this course!</div>
+        <div class="loader"></div>
+        <div>Please wait, your course is loading...</div>
+    </section>
+
+    <section class="min-h-[100vh] mt-[80px]" *ngIf="!isLoading && courseUrl">
+        <div></div>
+        <div>
+            <iframe
+                [src]="courseUrl"
+                width="100%"
+                frameborder="0"
+                title="course"
+                class="h-[1000px]"
+                scrolling="no"
+                id="courseIframe"
+                #courseIframe
+            ></iframe>
+        </div>
+    </section>
+
+    <!-- No records to display -->
+    <section *ngIf="!isLoading && !courseUrl" class="my-24">
+        <div class="container mx-auto text-center">
+            <img src="assets/no-data-1.jpg" class="mx-auto w-[500px]" alt="" />
+            <h1 class="text-2xl font-semibold">
+                No tutorials/courses to display
+            </h1>
+        </div>
+    </section>
+
+    <app-footer></app-footer>
+</main>
