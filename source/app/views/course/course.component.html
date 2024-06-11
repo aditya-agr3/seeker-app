@@ -5,7 +5,9 @@
         class="h-[100vh] flex justify-center items-center gap-5 flex-col"
         *ngIf="isLoading"
     >
-        <div>Congratulations, You have successfully Enroll in this course!</div>
+        <div class="text-center">
+            Congratulations, You have successfully Enroll in this course!
+        </div>
         <div class="loader"></div>
         <div>Please wait, your course is loading...</div>
     </section>
@@ -18,7 +20,7 @@
                 width="100%"
                 frameborder="0"
                 title="course"
-                class="h-[1000px]"
+                class="100vh"
                 scrolling="no"
                 id="courseIframe"
                 #courseIframe

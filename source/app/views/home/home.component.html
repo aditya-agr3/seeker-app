@@ -166,8 +166,10 @@
                     &rarr;
                 </button>
             </div>
-            <div>
-                <label for="postsPerPage" class="mr-2">Posts per page</label>
+            <div class="flex items-center">
+                <label for="postsPerPage" class="hidden mr-2 sm:block"
+                    >Posts per page</label
+                >
                 <select
                     id="postsPerPage"
                     [(ngModel)]="postsPerPage"
