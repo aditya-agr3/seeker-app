@@ -12,7 +12,11 @@
         <div>Please wait, your course is loading...</div>
     </section>
 
-    <section class="min-h-[100vh] mt-[80px]" *ngIf="!isLoading && courseUrl">
+    <section
+        class="min-h-[calc(100vh-80px)] mt-[80px]"
+        [class.hidden]="!isLoading && !courseUrl"
+    >
+        <!-- *ngIf="!isLoading && courseUrl" -->
         <div></div>
         <div>
             <iframe
@@ -20,7 +24,7 @@
                 width="100%"
                 frameborder="0"
                 title="course"
-                class="100vh"
+                class="![min-height:calc(100vh-80px)]"
                 scrolling="no"
                 id="courseIframe"
                 #courseIframe

@@ -59,6 +59,56 @@
                         <mat-icon>close</mat-icon>
                     </button>
                 </div>
+                <div
+                    class="flex items-center justify-start w-[200px] gap-2 mt-2 grow"
+                >
+                    <div
+                        class="border-[1px] border-white p-[5px] rounded-full grow"
+                    >
+                        <select
+                            name=""
+                            id=""
+                            class="w-full py-[3px] bg-transparent border-0 outline-none grow"
+                            (change)="onLanguageChange($event)"
+                        >
+                            <option class="text-gray-400" value="en-US">
+                                English
+                            </option>
+                            <option class="text-gray-400" value="hi-IN">
+                                Hindi
+                            </option>
+                            <!-- gujrati -->
+                            <option class="text-gray-400" value="gu-IN">
+                                Gujarati
+                            </option>
+                            <option class="text-gray-400" value="ta-IN">
+                                Tamil
+                            </option>
+                            <option class="text-gray-400" value="te-IN">
+                                Telugu
+                            </option>
+                            <option class="text-gray-400" value="kn-IN">
+                                Kannada
+                            </option>
+                        </select>
+                    </div>
+                    <div
+                        class="flex items-center justify-center bg-white rounded-full p-[5px] hover:cursor-pointer hover:scale-105 h-[40px] w-[40px]"
+                        (click)="toggleMicrophone()"
+                    >
+                        <mat-icon
+                            *ngIf="!isMicrophoneActive"
+                            class="text-gray-600"
+                            >mic</mat-icon
+                        >
+                        <div id="bars" *ngIf="isMicrophoneActive">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

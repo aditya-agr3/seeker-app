@@ -92,6 +92,7 @@ export class CourseComponent {
                     this.courseUrl =
                         this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
+                    this.refreshIframe();
                     return;
                 }
 
@@ -108,12 +109,19 @@ export class CourseComponent {
                     this.courseUrl =
                         this.sanitizer.bypassSecurityTrustResourceUrl(url);
 
+                    this.refreshIframe();
                     return;
                 }
             });
     }
 
     ngAfterViewInit() {
+        this.refreshIframe();
+    }
+
+    refreshIframe() {
+        let courseIframe = document.getElementById('courseIframe');
+        console.log('courseIframe: ', courseIframe);
         if (!this.courseIframe) return;
         this.courseIframe.nativeElement.onload = () => {
             this.adjustIframeHeight();
@@ -124,8 +132,14 @@ export class CourseComponent {
         const iframe = this.courseIframe.nativeElement;
         const iframeDocument =
             iframe.contentDocument || iframe.contentWindow?.document;
+        console.log('iframe: ', iframe);
+
         if (iframeDocument) {
             iframe.style.height = iframeDocument.body.scrollHeight + 'px';
+            console.log(
+                'iframeDocument.body.scrollHeight: ',
+                iframeDocument.body.scrollHeight
+            );
         }
     }
 }

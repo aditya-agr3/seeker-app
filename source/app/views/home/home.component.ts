@@ -1,4 +1,9 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import {
+    Component,
+    ChangeDetectorRef,
+    PLATFORM_ID,
+    Inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -11,6 +16,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
 
 import { SearchService } from '../../core/services/search.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-home',
@@ -40,10 +46,20 @@ export class HomeComponent {
     totalPages: number = 1;
     postsPerPage: number = 6;
 
+    recognition: any;
+    isMicrophoneActive: boolean = false;
+    waitingForConfirmation: boolean = false;
+    selectedLanguage = 'en-US'; // Default to English
+
     constructor(
         private searchService: SearchService,
-        private cdr: ChangeDetectorRef
-    ) {}
+        private cdr: ChangeDetectorRef,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) {
+        if (isPlatformBrowser(this.platformId)) {
+            this.initSpeechRecognition();
+        }
+    }
 
     ngOnInit() {
         this.fetchPosts();
@@ -133,6 +149,95 @@ export class HomeComponent {
                 block: 'center',
                 inline: 'nearest',
             });
+        }
+    }
+
+    initSpeechRecognition() {
+        if (typeof window !== 'undefined') {
+            const SpeechRecognition =
+                (window as any).SpeechRecognition ||
+                (window as any).webkitSpeechRecognition;
+            this.recognition = new SpeechRecognition();
+            this.recognition.continuous = false;
+            this.recognition.interimResults = false;
+            this.recognition.lang = this.selectedLanguage;
+
+            this.recognition.onresult = (event: any) => {
+                let transcript = event.results[0][0].transcript;
+                // remove trailing "." from transcript by removing last
+                // character
+                transcript = transcript.slice(0, -1);
+                this.searchQuery = transcript;
+            };
+
+            this.recognition.onerror = (event: any) => {
+                console.error('Voice recognition error:', event.error);
+            };
+        }
+    }
+
+    onLanguageChange(event: any) {
+        this.selectedLanguage = event.target.value;
+        if (this.recognition) {
+            this.recognition.lang = this.selectedLanguage;
+            console.log(`Language changed to ${this.selectedLanguage}`);
+        }
+    }
+
+    startVoiceRecognition() {
+        if (isPlatformBrowser(this.platformId)) {
+            console.log('Starting voice recognition...');
+            this.recognition.start();
+        }
+    }
+
+    activateMicrophone() {
+        this.isMicrophoneActive = true;
+        console.log('Microphone activated');
+    }
+
+    deactivateMicrophone() {
+        this.isMicrophoneActive = false;
+        this.handlerSearch();
+        console.log('Microphone deactivated');
+    }
+
+    toggleMicrophone() {
+        if (this.isMicrophoneActive) {
+            console.log('Deactivating microphone...');
+            this.deactivateMicrophone();
+        } else {
+            console.log('Activating microphone...');
+            this.activateMicrophone();
+            this.startVoiceRecognition();
+        }
+    }
+
+    checkMicrophonePermissions() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices
+                .getUserMedia({ video: false, audio: true })
+                .then((stream) => {
+                    console.log('Microphone access granted.');
+                    stream.getTracks().forEach((track) => track.stop());
+
+                    alert(
+                        'Microphone access is required for speech recognition.'
+                    );
+
+                    // window.localStream = stream; // A
+                    // window.localAudio.srcObject = stream; // B
+                    // window.localAudio.autoplay = true; // C
+                })
+                .catch((error) => {
+                    console.error('Microphone access denied:', error);
+                    alert(
+                        'Microphone access is required for speech recognition.'
+                    );
+                });
+        } else {
+            console.warn('getUserMedia not supported on this browser.');
+            alert('Your browser does not support microphone access.');
         }
     }
 }
