@@ -53,6 +53,13 @@
                         [disabled]="isLoading"
                         (click)="toSearchResult()"
                         class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
+                        *ngIf="searchQuery"
+                    >
+                        <mat-icon>search</mat-icon>
+                    </button>
+                    <button
+                        [disabled]="isLoading"
+                        class="flex items-center justify-center p-1 rounded-full hover:bg-[rgba(255,255,255,0.1)]"
                         (click)="handlerClear()"
                         *ngIf="searchQuery"
                     >
