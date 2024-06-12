@@ -251,8 +251,8 @@ export class ConfirmService {
                         {
                             customer: {
                                 person: {
-                                    name: data.name,
-                                    age: String(data.age),
+                                    name: data?.name,
+                                    age: String(data?.age),
                                     tags: [
                                         {
                                             code: 'distributor-details',
@@ -276,8 +276,8 @@ export class ConfirmService {
                                     ],
                                 },
                                 contact: {
-                                    phone: String(data.phone),
-                                    email: data.email,
+                                    phone: String(data?.phone),
+                                    email: data?.email,
                                 },
                             },
                         },

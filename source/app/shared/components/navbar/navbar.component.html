@@ -22,8 +22,15 @@
             >
         </nav>
         <button
+            (click)="openUrlInNewTab(courseUrl)"
+            class="inline-flex items-center px-3 py-1 mr-2 text-base text-gray-600 bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 h-[33px]"
+            *ngIf="courseUrl"
+        >
+            Open
+        </button>
+        <button
             (click)="goBack()"
-            class="inline-flex items-center px-3 py-1 text-base text-gray-600 bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200"
+            class="inline-flex items-center px-3 py-1 text-base text-gray-600 bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 h-[33px]"
             (click)="goBack()"
             *ngIf="!hero"
         >
@@ -39,7 +46,7 @@
                 <path d="M19 12H5M12 5l-7 7 7 7"></path>
             </svg>
 
-            Back
+            <div class="hidden sm:block">Back</div>
             <!-- <svg
                 fill="none"
                 stroke="currentColor"

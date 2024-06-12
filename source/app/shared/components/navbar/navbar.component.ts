@@ -16,6 +16,7 @@ export class NavbarComponent {
     // isSearchVisible: boolean = false;
 
     @Input() hero!: boolean;
+    @Input() courseUrl!: any;
     isScrolled: boolean = false;
 
     constructor(private location: Location, private router: Router) {}
@@ -38,4 +39,11 @@ export class NavbarComponent {
     //   toggleSearch() {
     //     this.isSearchVisible = !this.isSearchVisible;
     //   }
+
+    openUrlInNewTab(url: any) {
+        let a = document.createElement('a');
+        a.href = url?.changingThisBreaksApplicationSecurity;
+        a.target = '_blank';
+        a.click();
+    }
 }
