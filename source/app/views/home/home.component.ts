@@ -168,6 +168,8 @@ export class HomeComponent {
                 // character
                 // transcript = transcript.slice(0, -1);
                 this.searchQuery = transcript;
+                this.handlerSearch();
+                this.toggleMicrophone();
             };
 
             this.recognition.onerror = (event: any) => {
