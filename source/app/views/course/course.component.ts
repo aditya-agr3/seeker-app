@@ -22,8 +22,8 @@ export class CourseComponent {
     providerId!: string;
     itemId!: string;
     userDetails!: any;
-    courseUrl: any =
-        'https://trial.vowel.work/Onestcontent/course-library/how-to-save-money';
+    courseUrl: any = null;
+    // 'https://trial.vowel.work/Onestcontent/course-library/how-to-save-money';
     @ViewChild('courseIframe', { static: false })
     courseIframe!: ElementRef<HTMLIFrameElement>;
 

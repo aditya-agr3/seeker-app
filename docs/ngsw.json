@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1718185759064,
+  "timestamp": 1718187279668,
   "index": "/seeker-app/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/seeker-app/chunk-XVVIWBNW.js",
         "/seeker-app/favicon.ico",
         "/seeker-app/index.html",
-        "/seeker-app/main-DZM34H6G.js",
+        "/seeker-app/main-7LFGIESK.js",
         "/seeker-app/manifest.webmanifest",
         "/seeker-app/polyfills-S3BTP7ME.js",
         "/seeker-app/styles-KMPDNY3S.css"
@@ -86,8 +86,8 @@
     "/seeker-app/chunk-AE6H24ZC.js": "68ec9b09313422d632419b41d2c7563b488a6fce",
     "/seeker-app/chunk-XVVIWBNW.js": "d061629974577d0d166eb2b6de7d3448857e56e8",
     "/seeker-app/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/seeker-app/index.html": "b4657ae5e688f1bc680f0773370ee8b7e1a481f3",
-    "/seeker-app/main-DZM34H6G.js": "af55e1dbf79f16e2ce8ff5b1701f32f21fb9cf5f",
+    "/seeker-app/index.html": "5cd4bc02d34478a4ec3e356882f8089a83ce7f7a",
+    "/seeker-app/main-7LFGIESK.js": "2970c503189c9aa35d64559745d25f180e0f6346",
     "/seeker-app/manifest.webmanifest": "c888ff8121780995ac6d35784ad5ec5d6c06b1ab",
     "/seeker-app/media/hero-1-5PRW6QAZ.jpg": "53865f4c85e2056bf6cfe902b8ac23ed8621c603",
     "/seeker-app/polyfills-S3BTP7ME.js": "893d641030c187f109c667de1b0a73a03095fa3b",
