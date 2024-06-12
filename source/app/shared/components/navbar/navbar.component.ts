@@ -24,7 +24,11 @@ export class NavbarComponent {
     @HostListener('window:scroll', [])
     onWindowScroll() {
         // If the navbar is in hero mode, don't change the background color
-        this.isScrolled = window.pageYOffset >= window.innerHeight;
+        // this.isScrolled = window.pageYOffset >= window.innerHeight;
+        this.isScrolled = window.pageYOffset >= 100;
+
+        console.log(window.pageYOffset, window.innerHeight, this.isScrolled);
+
         // Detect if the user has scrolled down 100vh
     }
 
