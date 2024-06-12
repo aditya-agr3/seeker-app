@@ -166,7 +166,7 @@ export class HomeComponent {
                 let transcript = event.results[0][0].transcript;
                 // remove trailing "." from transcript by removing last
                 // character
-                transcript = transcript.slice(0, -1);
+                // transcript = transcript.slice(0, -1);
                 this.searchQuery = transcript;
             };
 
